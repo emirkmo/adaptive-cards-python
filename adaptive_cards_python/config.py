@@ -21,6 +21,5 @@ TextBlockStyle = Literal["default", "heading"]
 VerticalAlignment = Literal["top", "center", "bottom"]
 VerticalContentAlignment = Literal["top", "center", "bottom"]
 Colors = (
-    Literal["default", "dark", "light", "accent", "good", "warning", "attention"]
-    | str
+    Literal["default", "dark", "light", "accent", "good", "warning", "attention"] | str
 )

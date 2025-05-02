@@ -2,7 +2,7 @@ from __future__ import annotations  # Required to defer type hint evaluation!
 
 from typing import Literal
 
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import AnyUrl, Field
 
 from .config import VerticalContentAlignment
 from .Action import Execute, ISelectActionType, ActionType
