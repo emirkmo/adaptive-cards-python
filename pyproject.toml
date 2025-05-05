@@ -18,3 +18,17 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = ["pytest>=8.3.5", "ruff>=0.11.8"]
+
+[[tool.uv.index]]
+name = "axis"
+url = "https://artifacts.se.axis.com/artifactory/api/pypi/all-pypi/simple/"
+
+[[tool.uv.index]]
+name = "PyPI"
+url = "https://pypi.org/simple/"
+
+[[tool.uv.index]]
+name = "axis-ddm-prod"
+url = "https://artifacts.se.axis.com/artifactory/api/pypi/ddm-pypi/"
+publish-url = "https://artifacts.se.axis.com/artifactory/api/pypi/ddm-pypi/"
+explicit = true
