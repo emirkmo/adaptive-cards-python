@@ -52,9 +52,6 @@ class Element(ToggleableItem):
             " element."
         ),
     )
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class ActionSet(Element):
@@ -68,12 +65,7 @@ class ActionSet(Element):
     actions: list[ActionType] = Field(
         ..., description="The array of `Action` elements to show."
     )
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Column(ToggleableItem):
@@ -168,9 +160,6 @@ class Column(ToggleableItem):
             ' width, like `"50px"`.'
         ),
     )
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class ColumnSet(Element):
@@ -220,12 +209,7 @@ class ColumnSet(Element):
             " If no parent container has horizontalAlignment set, it defaults to Left."
         ),
     )
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Container(Element):
@@ -293,12 +277,7 @@ class Container(Element):
         ),
         json_schema_extra={"version": "1.5"},
     )
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Fact(ConfiguredBaseModel):
@@ -318,12 +297,7 @@ class FactSet(Element):
 
     type: Literal["FactSet"] = Field(default="FactSet", description="Must be `FactSet`")
     facts: list[Fact] = Field(..., description="The array of `Fact`'s.")
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Image(ConfiguredBaseModel):
@@ -450,12 +424,7 @@ class ImageSet(Element):
             " will default to medium if those values are set."
         ),
     )
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class MediaSource(ConfiguredBaseModel):
@@ -491,12 +460,7 @@ class Media(Element):
     altText: str | None = Field(
         default=None, description="Alternate text describing the audio or video."
     )
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class TextRun(ConfiguredBaseModel):
@@ -562,12 +526,7 @@ class RichTextBlock(Element):
             " container has horizontalAlignment set, it defaults to Left."
         ),
     )
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class TableColumnDefinition(ConfiguredBaseModel):
@@ -758,12 +717,7 @@ class Table(Element):
             " When not specified, vertical alignment is defined on a per-cell basis."
         ),
     )
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class TextBlock(Element):
@@ -818,12 +772,7 @@ class TextBlock(Element):
         default="default",
         description="The style of this TextBlock for accessibility purposes.",
     )
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    id: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Input(ConfiguredBaseModel):
@@ -954,11 +903,7 @@ class ChoiceSet(Input):
     isRequired: Any | None = None
     label: Any | None = None
     fallback: Any | None = None
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Date(Input):
@@ -998,11 +943,7 @@ class Date(Input):
     isRequired: Any | None = None
     label: Any | None = None
     fallback: Any | None = None
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Number(Input):
@@ -1035,11 +976,7 @@ class Number(Input):
     isRequired: Any | None = None
     label: Any | None = None
     fallback: Any | None = None
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 TextInputStyle = Literal["text", "tel", "url", "email", "password"]
@@ -1095,11 +1032,7 @@ class Text(Input):
     isRequired: Any | None = None
     label: Any | None = None
     fallback: Any | None = None
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Time(Input):
@@ -1136,11 +1069,7 @@ class Time(Input):
     isRequired: Any | None = None
     label: Any | None = None
     fallback: Any | None = None
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 class Toggle(Input):
@@ -1174,11 +1103,7 @@ class Toggle(Input):
     isRequired: Any | None = None
     label: Any | None = None
     fallback: Any | None = None
-    height: Any | None = None
     separator: Any | None = None
-    spacing: Any | None = None
-    isVisible: Any | None = None
-    requires: Any | None = None
 
 
 ElementType = Annotated[

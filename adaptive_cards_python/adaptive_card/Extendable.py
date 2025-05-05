@@ -42,4 +42,3 @@ class ToggleableItem(Item):
         description="If `false`, this item will be removed from the visual tree.",
         json_schema_extra={"version": "1.2"},
     )
-    requires: Any | None = None

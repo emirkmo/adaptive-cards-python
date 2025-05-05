@@ -1,14 +1,23 @@
 from __future__ import annotations  # Required to defer type hint evaluation!
 
-from typing import Literal
+from typing import Any, Literal, Self
+from pathlib import Path
+import json
 
-from pydantic import AnyUrl, Field
+from pydantic import AnyUrl, Field, model_validator
+import jsonschema
 
 from .config import VerticalContentAlignment
 from .Action import Execute, ISelectActionType, ActionType
 from .BackgroundImage import BackgroundImage
 from .Element import ElementType
 from .Extendable import ConfiguredBaseModel
+
+def get_json_schema_json() -> dict[str, Any]:
+    """Return the adaptive-card.json json schema as a python dict using json.load"""
+    adaptive_card_json_schema_path = Path(__file__).parent/"adaptive-card.json"
+    with adaptive_card_json_schema_path.open() as outfile:
+            return json.load(outfile)
 
 
 class AuthCardButton(ConfiguredBaseModel):
@@ -70,7 +79,7 @@ class Authentication(ConfiguredBaseModel):
     """
 
     type: Literal["Authentication"] = Field(
-        default="Authentication", description="Must be `Authentication`"
+        default="Authentication", description="Must be `Authentication`",
     )
     text: str | None = Field(
         default=None,
@@ -108,7 +117,7 @@ class AdaptiveCard(ConfiguredBaseModel):
     """
 
     type: Literal["AdaptiveCard", "application/vnd.microsoft.card.adaptive"] = Field(
-        "AdaptiveCard", description="Must be `AdaptiveCard`"
+        "AdaptiveCard", description="Must be `AdaptiveCard`",
     )
     version: str = Field(
         description=(
@@ -204,6 +213,15 @@ class AdaptiveCard(ConfiguredBaseModel):
     field_schema: AnyUrl | None = Field(
         default=None, alias="$schema", description="The Adaptive Card schema."
     )
+
+    @model_validator(mode="after")
+    def validate_using_json_schema(self: Self) -> Self:
+        schema_json = get_json_schema_json()
+        self.type = "AdaptiveCard" # Do we need this?
+
+        jsonschema.validate(instance=self.model_dump(exclude_unset=True), schema=schema_json)
+        return self
+
 
 
 class Refresh(ConfiguredBaseModel):
