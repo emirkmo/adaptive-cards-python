@@ -65,7 +65,6 @@ class ActionSet(Element):
     actions: list[ActionType] = Field(
         ..., description="The array of `Action` elements to show."
     )
-    separator: Any | None = None
 
 
 class Column(ToggleableItem):
@@ -209,7 +208,6 @@ class ColumnSet(Element):
             " If no parent container has horizontalAlignment set, it defaults to Left."
         ),
     )
-    separator: Any | None = None
 
 
 class Container(Element):
@@ -277,7 +275,6 @@ class Container(Element):
         ),
         json_schema_extra={"version": "1.5"},
     )
-    separator: Any | None = None
 
 
 class Fact(ConfiguredBaseModel):
@@ -297,7 +294,6 @@ class FactSet(Element):
 
     type: Literal["FactSet"] = Field(default="FactSet", description="Must be `FactSet`")
     facts: list[Fact] = Field(..., description="The array of `Fact`'s.")
-    separator: Any | None = None
 
 
 class Image(ConfiguredBaseModel):
@@ -424,7 +420,6 @@ class ImageSet(Element):
             " will default to medium if those values are set."
         ),
     )
-    separator: Any | None = None
 
 
 class MediaSource(ConfiguredBaseModel):
@@ -460,7 +455,6 @@ class Media(Element):
     altText: str | None = Field(
         default=None, description="Alternate text describing the audio or video."
     )
-    separator: Any | None = None
 
 
 class TextRun(ConfiguredBaseModel):
@@ -526,7 +520,6 @@ class RichTextBlock(Element):
             " container has horizontalAlignment set, it defaults to Left."
         ),
     )
-    separator: Any | None = None
 
 
 class TableColumnDefinition(ConfiguredBaseModel):
@@ -717,7 +710,6 @@ class Table(Element):
             " When not specified, vertical alignment is defined on a per-cell basis."
         ),
     )
-    separator: Any | None = None
 
 
 class TextBlock(Element):
@@ -772,7 +764,6 @@ class TextBlock(Element):
         default="default",
         description="The style of this TextBlock for accessibility purposes.",
     )
-    separator: Any | None = None
 
 
 class Input(ConfiguredBaseModel):
@@ -899,11 +890,6 @@ class ChoiceSet(Input):
         description="If `true`, allow text to wrap. Otherwise, text is clipped.",
         json_schema_extra={"version": "1.2"},
     )
-    errorMessage: Any | None = None
-    isRequired: Any | None = None
-    label: Any | None = None
-    fallback: Any | None = None
-    separator: Any | None = None
 
 
 class Date(Input):
@@ -939,11 +925,6 @@ class Date(Input):
         default=None,
         description="The initial value for this field expressed in YYYY-MM-DD.",
     )
-    errorMessage: Any | None = None
-    isRequired: Any | None = None
-    label: Any | None = None
-    fallback: Any | None = None
-    separator: Any | None = None
 
 
 class Number(Input):
@@ -972,11 +953,6 @@ class Number(Input):
     value: float | None = Field(
         default=None, description="Initial value for this field."
     )
-    errorMessage: Any | None = None
-    isRequired: Any | None = None
-    label: Any | None = None
-    fallback: Any | None = None
-    separator: Any | None = None
 
 
 TextInputStyle = Literal["text", "tel", "url", "email", "password"]
@@ -1028,11 +1004,6 @@ class Text(Input):
     value: str | None = Field(
         default=None, description="The initial value for this field."
     )
-    errorMessage: Any | None = None
-    isRequired: Any | None = None
-    label: Any | None = None
-    fallback: Any | None = None
-    separator: Any | None = None
 
 
 class Time(Input):
@@ -1065,11 +1036,6 @@ class Time(Input):
     value: str | None = Field(
         default=None, description="The initial value for this field expressed in HH:MM."
     )
-    errorMessage: Any | None = None
-    isRequired: Any | None = None
-    label: Any | None = None
-    fallback: Any | None = None
-    separator: Any | None = None
 
 
 class Toggle(Input):
@@ -1099,11 +1065,6 @@ class Toggle(Input):
         description="If `true`, allow text to wrap. Otherwise, text is clipped.",
         json_schema_extra={"version": "1.2"},
     )
-    errorMessage: Any | None = None
-    isRequired: Any | None = None
-    label: Any | None = None
-    fallback: Any | None = None
-    separator: Any | None = None
 
 
 ElementType = Annotated[

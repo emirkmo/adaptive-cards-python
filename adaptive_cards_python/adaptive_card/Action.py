@@ -71,7 +71,6 @@ class ActionBase(Item):
         ),
         json_schema_extra={"version": "1.5"},
     )
-    requires: Any | None = None
 
 
 AssociatedInputs = Literal["Auto", "None"]
@@ -129,14 +128,6 @@ class Execute(ActionBase):
         default="Auto",
         description="Controls which inputs are associated with the action.",
     )
-    title: Any | None = None
-    iconUrl: Any | None = None
-    id: Any | None = None
-    style: Any | None = None
-    fallback: Any | None = None
-    tooltip: Any | None = None
-    isEnabled: Any | None = None
-    requires: Any | None = None
 
 
 class OpenUrl(ActionBase):
@@ -149,14 +140,6 @@ class OpenUrl(ActionBase):
         default="Action.OpenUrl", description="Must be `Action.OpenUrl`"
     )
     url: str = Field(..., description="The URL to open.")
-    title: Any | None = None
-    iconUrl: Any | None = None
-    id: Any | None = None
-    style: Any | None = None
-    fallback: Any | None = None
-    tooltip: Any | None = None
-    isEnabled: Any | None = None
-    requires: Any | None = None
 
 
 class ShowCard(ActionBase):
@@ -177,15 +160,6 @@ class ShowCard(ActionBase):
         ),
         json_schema_extra=orjson.loads(get_json_schema_file().read_bytes()),
     )
-    title: Any | None = None
-    iconUrl: Any | None = None
-    id: Any | None = None
-    style: Any | None = None
-    fallback: Any | None = None
-    tooltip: Any | None = None
-    isEnabled: Any | None = None
-
-    requires: Any | None = None
 
 
 class Submit(ActionBase):
@@ -214,14 +188,6 @@ class Submit(ActionBase):
         description="Controls which inputs are associated with the submit action.",
         json_schema_extra={"version": "1.3"},
     )
-    title: Any | None = None
-    iconUrl: Any | None = None
-    id: Any | None = None
-    style: Any | None = None
-    fallback: Any | None = None
-    tooltip: Any | None = None
-    isEnabled: Any | None = None
-    requires: Any | None = None
 
 
 class ToggleVisibility(ActionBase):
@@ -243,14 +209,6 @@ class ToggleVisibility(ActionBase):
             " for more information."
         ),
     )
-    title: Any | None = None
-    iconUrl: Any | None = None
-    id: Any | None = None
-    style: Any | None = None
-    fallback: Any | None = None
-    tooltip: Any | None = None
-    isEnabled: Any | None = None
-    requires: Any | None = None
 
 
 ActionType = Annotated[
