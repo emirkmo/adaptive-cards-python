@@ -10,6 +10,8 @@ dependencies = [
     "pydantic>=2.11.4",
     "datamodel-code-generator[http]",
     "orjson>=3.10.18",
+    "jsonschema>=4.23.0",
+    "requests>=2.32.3",
 ]
 
 [build-system]
