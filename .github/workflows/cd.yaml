@@ -69,10 +69,10 @@ jobs:
           echo "✅ Pure-Python wheel OK: $wheel"
 
       - name: Smoke test (wheel)
-        run: uv run --isolated --no-project -p 3.12 --with dist/*.whl tests/smoke_test.py
+        run: uv run --isolated --no-project -p 3.12 --with dist/*.whl tests/test_version.py
 
       - name: Smoke test (source distribution)
-        run: uv run --isolated --no-project -p 3.12 --with dist/*.tar.gz tests/smoke_test.py
+        run: uv run --isolated --no-project -p 3.12 --with dist/*.tar.gz tests/test_version.py
 
   # Publish via Github Release and to Pypi
   publish:
