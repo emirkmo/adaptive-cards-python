@@ -90,6 +90,7 @@ jobs:
         with:
           ref: "main"
           fetch-tags: true
+          fetch-depth: 0
       - name: Download all dist artifacts
         uses: actions/download-artifact@v4
         with:
@@ -109,7 +110,7 @@ jobs:
         id: version
         run: |
           VERSION=$(uv run python -c "from importlib.metadata import version; print(version('adaptive_cards_python'));")
-          echo "version=v{$VERSION}" >> $GITHUB_OUTPUT
+          echo "version=v$VERSION" >> $GITHUB_OUTPUT
 
       - name: get previous tag
         id: previous_version
