@@ -90,6 +90,10 @@ jobs:
   publish:
     needs: check
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      # optionally, point to the URL of the deployed package:
+      url: https://pypi.org/project/adaptive-cards-python/
     steps:
       - uses: actions/checkout@v4
         with:
