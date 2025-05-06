@@ -150,13 +150,13 @@ class ShowCard(ActionBase):
     type: Literal["Action.ShowCard"] = Field(
         default="Action.ShowCard", description="Must be `Action.ShowCard`"
     )
-    card: dict[str, Any] = Field(
+    card: dict[str, Any] | ConfiguredBaseModel = Field(
         ...,
         description=(
             "The Adaptive Card to show. Inputs in ShowCards will not be submitted if"
             " the submit button is located on a parent card. See"
             " https://docs.microsoft.com/en-us/adaptive-cards/authoring-cards/input-validation"
-            " for more details."
+            " for more details. **WARNING:** Type hinting is suboptimal but input is validated"
         ),
         json_schema_extra=orjson.loads(get_json_schema_file().read_bytes()),
     )

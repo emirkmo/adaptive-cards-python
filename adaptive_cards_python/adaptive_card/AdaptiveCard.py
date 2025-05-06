@@ -13,11 +13,12 @@ from .BackgroundImage import BackgroundImage
 from .Element import ElementType
 from .Extendable import ConfiguredBaseModel
 
+
 def get_json_schema_json() -> dict[str, Any]:
     """Return the adaptive-card.json json schema as a python dict using json.load"""
-    adaptive_card_json_schema_path = Path(__file__).parent/"adaptive-card.json"
+    adaptive_card_json_schema_path = Path(__file__).parent / "adaptive-card.json"
     with adaptive_card_json_schema_path.open() as outfile:
-            return json.load(outfile)
+        return json.load(outfile)
 
 
 class AuthCardButton(ConfiguredBaseModel):
@@ -79,7 +80,8 @@ class Authentication(ConfiguredBaseModel):
     """
 
     type: Literal["Authentication"] = Field(
-        default="Authentication", description="Must be `Authentication`",
+        default="Authentication",
+        description="Must be `Authentication`",
     )
     text: str | None = Field(
         default=None,
@@ -117,9 +119,11 @@ class AdaptiveCard(ConfiguredBaseModel):
     """
 
     type: Literal["AdaptiveCard", "application/vnd.microsoft.card.adaptive"] = Field(
-        "AdaptiveCard", description="Must be `AdaptiveCard`",
+        "AdaptiveCard",
+        description="Must be `AdaptiveCard`",
     )
     version: str = Field(
+        default="1.5",
         description=(
             "Schema version that this card requires. If a client is **lower** than this"
             " version, the `fallbackText` will be rendered. NOTE: Version is not"
@@ -217,11 +221,12 @@ class AdaptiveCard(ConfiguredBaseModel):
     @model_validator(mode="after")
     def validate_using_json_schema(self: Self) -> Self:
         schema_json = get_json_schema_json()
-        self.type = "AdaptiveCard" # Do we need this?
+        self.type = "AdaptiveCard"  # Do we need this?
 
-        jsonschema.validate(instance=self.model_dump(exclude_unset=True), schema=schema_json)
+        jsonschema.validate(
+            instance=self.model_dump(exclude_none=True), schema=schema_json
+        )
         return self
-
 
 
 class Refresh(ConfiguredBaseModel):

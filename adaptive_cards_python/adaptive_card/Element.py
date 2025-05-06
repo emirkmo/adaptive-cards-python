@@ -1,7 +1,7 @@
 from __future__ import annotations  # Required to defer type hint evaluation!
 from pydantic import Field, ConfigDict
 
-from typing import Annotated, Any, Literal, Self
+from typing import Annotated, Literal, Self
 
 from .BackgroundImage import BackgroundImage
 from .Extendable import ToggleableItem, ConfiguredBaseModel
