@@ -12,6 +12,7 @@ dependencies = [
     "jsonschema>=4.23.0",
     "requests>=2.32.3",
 ]
+license = "MIT"
 
 [build-system]
 requires = ["hatchling", "uv-dynamic-versioning"]
@@ -26,8 +27,9 @@ source = "uv-dynamic-versioning"
 [tool.uv-dynamic-versioning]
 fallback-version = "0.1.0"
 vcs = "git"
-style = "pep440"
+#style = "pep440"
 bump = true
+style = "semver"
 
 [[tool.uv.index]]
 name = "axis"
