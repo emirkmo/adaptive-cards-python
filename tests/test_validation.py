@@ -166,31 +166,31 @@ def test_construct_from_json_string():
                 "action": {
                     "type": "Action.Execute",
                     "title": "Refresh",
-                    "verb": "acceptRejectView",
-                },
+                    "verb": "acceptRejectView"
+                }
             },
             "body": [
                 {"type": "TextBlock", "text": "Migrations Ready"},
                 {"type": "TextBlock", "text": "Submitted by **ADACO**"},
                 {
                     "type": "TextBlock",
-                    "text": "Approval pending from **DDM**",
-                },
+                    "text": "Approval pending from **DDM**"
+                }
             ],
             "actions": [
                 {
                     "type": "Action.Execute",
                     "title": "Approve",
                     "verb": "approve",
-                    "data": {"more info": "<more info>"},
+                    "data": {"more info": "<more info>"}
                 },
                 {
                     "type": "Action.Execute",
                     "title": "Reject",
                     "verb": "reject",
-                    "data": {"more info": "<more info>"},
-                },
-            ],
+                    "data": {"more info": "<more info>"}
+                }
+            ]
         }
     """
     approvable_card = AdaptiveCard.model_validate_json(card_json)
