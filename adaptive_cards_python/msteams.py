@@ -8,6 +8,7 @@ class Attachment(TypedDict):
     contentType: Literal["application/vnd.microsoft.card.adaptive"]
     content: dict[str, Any]
 
+
 class Payload(TypedDict):
     attachments: list[Attachment]
 
@@ -23,6 +24,7 @@ def create_payload(adaptive_card: AdaptiveCard) -> Payload:
         ]
     }
     return payload
+
 
 def post_to_webhook(webhook_url: str, card: AdaptiveCard) -> requests.Response:
     """Post as payload to msteams webhook. Create via power automate."""

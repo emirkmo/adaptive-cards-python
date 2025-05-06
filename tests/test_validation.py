@@ -1,5 +1,10 @@
 import datetime
-from adaptive_cards_python import AdaptiveCard, validate_using_json_schema, elements, actions
+from adaptive_cards_python import (
+    AdaptiveCard,
+    validate_using_json_schema,
+    elements,
+    actions,
+)
 from pydantic import ValidationError
 import requests
 import pytest
