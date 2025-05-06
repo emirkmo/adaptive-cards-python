@@ -110,3 +110,6 @@ This action can take in an `AdaptiveCard` and be used inside an `AdaptiveCard`. 
 under their own `actions` namespace, we type hint the card parameter for `ShowCard` using
 `dict[str, Any] | ConfiguredBaseModel`. However, we use jsonschema to validate the card inside
 of `ShowCard` when constructing the full `AdaptiveCard` anyway.
+
+Development and package management is done via `uv`.
+Formatting is via `ruff` and tested using `pytest`.
