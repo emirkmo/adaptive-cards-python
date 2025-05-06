@@ -1,36 +1,32 @@
 # Adaptive Cards Python
 
-`adaptive_cards_python` is intented to be used as a library for constructing and validating
-Microsoft Adaptive Cards within python, without having to refer to any external documentation
-or tooling.
+`adaptive_cards_python` is a library for constructing and validating Microsoft Adaptive Cards
+within Python, without having to refer to any external documentation or tooling.
 
 ## Features
 
-Unlike competing python libraries, it is 100% complete with respect to the official
-JSON schema of Adaptive Cards. All possible components are fully implemented, and all descriptions
-are also present.
+- **100% complete** with respect to the official Adaptive Cards JSON Schema.
+  (Unlike competing python libraries.)
+- Full implementation of all possible components and all descriptions.
+- Programmatic construction via type-checked [Pydantic] models, with IDE autocomplete.
+- Validation of existing `dict` or JSON string representations.
+- Helper methods for posting to msteams via webhooks.
 
-`adaptive_cards_python` supports both programmatic construction of an adaptive card using
-type checked components ([Pydantic] models) that allow using your IDE's auto complete
-as well as validating existing dict or json string representations of an adaptive card
-generated elsewhere.
-
-It is a fully typed, type checked, and run-time validated python implementation of
-Microsoft adaptive cards using their (latest as of May 2025) JSON Schema **version 1.5**.
+`adaptive_cards_python` is a fully typed, type checked, and run-time validated python implementation
+of Microsoft adaptive cards using their (latest as of May 2025) JSON Schema **version 1.5**.
 The library has pydantic models that statically type, and run-time validate
 adaptive card json/dicts to be compliant with the jsonschema published by [Adaptive Cards].
 
 Each option enum is typed using literal strings, allowing browsing options using your IDE's auto
 complete and doc browsing features.
 
-See tests for examples. You can also use the [Interactive Card Designer], but beware of
-the barely documented templating syntax. It's only implemented for `C#` and `Javascript`.
-
+See tests for examples. You can also use the [Interactive Card Designer], but note
+its templating syntax is lightly documented and only supported for `C#` and `JavaScript`,
+so ignore the templating!
 
 [Adaptive Cards]: https://adaptivecards.io/
 [Pydantic]: https://docs.pydantic.dev/latest/
 [Interactive Card Designer]: https://adaptivecards.io/designer/
-
 
 ## Usage
 
@@ -42,20 +38,19 @@ from adaptive_cards_python import AdaptiveCard
 # Validate dict
 my_python_dict = {"contains json dict representation of adaptive card"}
 card = AdaptiveCard.model_validate(my_python_dict)
-card.to_dict() # short hand from card.model_dump(exclude_none=True)
+card.to_dict() # short hand for card.model_dump(exclude_none=True)
 
 # Validate json string
 my_python_json_string = '{"contains json dict representation of adaptive card"}'
 card = AdaptiveCard.model_validate_json(my_python_json_string)
-card.model_dump_json(exclude_none=True)
+card.to_json() # # short hand for .model_dump_json(exclude_none=True)
 ```
 
 ### Construct programmatically
 
-Adaptive cards have a recursive `body` structure made of elements, which can be containers
-like `elements.ColumnSet`, individual display components like `elements.TextBlock`,
-or user input components like `elements.ChoiceSet`. They also have possible actions
-like `actions.OpenUrl`.
+Adaptive Cards use a recursive `body` of elements (containers like `elements.ColumnSet`,
+display elements like `elements.TextBlock`, input elements like `elements.ChoiceSet`),
+and actions (`actions.OpenUrl`, etc.).
 
 ```Python
 from adaptive_cards python import AdaptiveCard, elements, actions
@@ -77,15 +72,14 @@ card = AdaptiveCard(
 
 ### Send to msteams
 
-We include a convenience function for sending the adaptive card to msteams via a webhook.
-Generate the webhook using the "workflows" app in msteams (you can view your workflows
-using [PowerAutomate]).
+A convenience function sends an Adaptive Card to MS Teams via webhook.
+Generate the webhook using the **Workflows** app in Teams (see [PowerAutomate]).
 
 ```Python
 from adaptive_cards python import post_to_webhook
 
-MY_WEBHOOK = "<SOME_WEBHOOK>"
-# Use previously generated & validated AdaptiveCard as `card`
+MY_WEBHOOK = "<YOUR_WEBHOOK_URL>"
+# Use a validated AdaptiveCard instance `card`
 post_to_webhook(MY_WEBHOOK, card)
 ```
 
@@ -108,8 +102,14 @@ comparison and validation of included strings.
 The only suboptimal trade-off made was for the barely used `ShowCard` action (`actions.ShowCard`).
 This action can take in an `AdaptiveCard` and be used inside an `AdaptiveCard`. To keep actions
 under their own `actions` namespace, we type hint the card parameter for `ShowCard` using
-`dict[str, Any] | ConfiguredBaseModel`. However, we use jsonschema to validate the card inside
+`dict[str, Any] | ConfiguredBaseModel`. However, we use `jsonschema` to validate the card inside
 of `ShowCard` when constructing the full `AdaptiveCard` anyway.
 
-Development and package management is done via `uv`.
-Formatting is via `ruff` and tested using `pytest`.
+## Development & tooling
+
+- Package management with `uv`, using `hatchling` build backend.
+- Formatting & Linting via `ruff`.
+- Tests run with `pytest`.
+- Dynamic semver generation using `uv-dynamic-versioning` and `dunamai`.
+- Automated build & publish using `Github Actions` and `PyPI` trusted-publishing.
+- `datamodel-code-generator` for initial code generation from JSON schema.
