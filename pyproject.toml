@@ -25,6 +25,9 @@ source = "uv-dynamic-versioning"
 
 [tool.uv-dynamic-versioning]
 fallback-version = "0.1.0"
+vcs = "git"
+style = "pep440"
+bump = true
 
 [[tool.uv.index]]
 name = "axis"
