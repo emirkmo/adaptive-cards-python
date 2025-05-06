@@ -1,7 +1,7 @@
 [project]
 name = "adaptive-cards-python"
 dynamic = ["version"]
-description = "Fully typed & validated Adaptive Card implementation in pydantic."
+description = "Fully typed & validated Adaptive Card implementation using Pydantic."
 readme = "README.md"
 authors = [{ name = "Emir Karamehmetoglu", email = "emirk@axis.com" }]
 requires-python = ">=3.12"
@@ -13,6 +13,26 @@ dependencies = [
     "requests>=2.32.3",
 ]
 license = "MIT"
+# PEP301 trove classifiers
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Typing :: Typed",
+  "Framework :: Pydantic",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Software Development :: Serialization",
+  "Topic :: Text Processing :: Markup :: JSON",
+  "Topic :: File Formats :: JSON :: JSON Schema",
+  "Natural Language :: English",
+]
 
 [build-system]
 requires = ["hatchling", "uv-dynamic-versioning"]
