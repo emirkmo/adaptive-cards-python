@@ -1,6 +1,6 @@
 [project]
 name = "adaptive-cards-python"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Fully typed & validated Adaptive Card implementation in pydantic."
 readme = "README.md"
 authors = [{ name = "Emir Karamehmetoglu", email = "emirk@axis.com" }]
@@ -14,11 +14,17 @@ dependencies = [
 ]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = ["pytest>=8.3.5", "ruff>=0.11.8", "datamodel-code-generator[http]"]
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+fallback-version = "0.1.0"
 
 [[tool.uv.index]]
 name = "axis"
