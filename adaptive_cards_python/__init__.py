@@ -18,5 +18,5 @@ __all__ = [
     "post_to_webhook",
     "create_payload",
     "Payload",
-    "__version__"
+    "__version__",
 ]

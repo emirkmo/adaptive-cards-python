@@ -117,13 +117,11 @@ def test_construct_card():
         )
     )
 
-    card = AdaptiveCard(
-        type="AdaptiveCard", version="1.5", body=body, actions=actions_list
-    )
+    AdaptiveCard(type="AdaptiveCard", version="1.5", body=body, actions=actions_list)
 
 
 def contruct_from_dict():
-    updatable_card = AdaptiveCard.model_validate(
+    AdaptiveCard.model_validate(
         {
             "type": "AdaptiveCard",
             "version": "1.5",
@@ -193,4 +191,4 @@ def test_construct_from_json_string():
             ]
         }
     """
-    approvable_card = AdaptiveCard.model_validate_json(card_json)
+    AdaptiveCard.model_validate_json(card_json)

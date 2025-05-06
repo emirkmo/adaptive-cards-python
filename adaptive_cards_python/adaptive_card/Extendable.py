@@ -1,6 +1,5 @@
 from __future__ import annotations  # Required to defer type hint evaluation!
 
-from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic.alias_generators import to_camel
