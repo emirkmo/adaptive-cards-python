@@ -60,6 +60,9 @@ dev = [
 [tool.hatch.version]
 source = "uv-dynamic-versioning"
 
+[tool.hatch.build.targets.sdist]
+exclude = [".github",]
+
 [tool.uv-dynamic-versioning]
 fallback-version = "0.1.0"
 vcs = "git"
