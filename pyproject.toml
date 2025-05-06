@@ -29,6 +29,7 @@ fallback-version = "0.1.0"
 vcs = "git"
 style = "pep440"
 bump = true
+metadata = false
 
 
 [[tool.uv.index]]
