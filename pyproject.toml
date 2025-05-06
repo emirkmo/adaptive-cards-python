@@ -19,7 +19,11 @@ requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
-dev = ["pytest>=8.3.5", "ruff>=0.11.8", "datamodel-code-generator[http]"]
+dev = [
+    "pytest>=8.3.5",
+ "ruff>=0.11.8",
+ "datamodel-code-generator[http]",
+]
 
 [tool.hatch.version]
 source = "uv-dynamic-versioning"
@@ -27,9 +31,11 @@ source = "uv-dynamic-versioning"
 [tool.uv-dynamic-versioning]
 fallback-version = "0.1.0"
 vcs = "git"
-style = "pep440"
-bump = true
+#style = "pep440"
+#bump = {enable=true, index=-1}
 metadata = false
+ignore-untracked = true
+format-jinja = "{{bump_version(base)}}"
 
 
 [[tool.uv.index]]
