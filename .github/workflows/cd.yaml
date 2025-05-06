@@ -47,6 +47,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: checkout tests only
+        uses: actions/checkout@v4
+        with:
+         sparse-checkout: |
+          tests/test_version.py
+         sparse-checkout-cone-mode: false
+
       - name: Install uv
         uses: astral-sh/setup-uv@v6 # latest verified release
         with:
