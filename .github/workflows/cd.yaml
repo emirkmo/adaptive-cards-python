@@ -115,7 +115,7 @@ jobs:
       - name: get previous tag
         id: previous_version
         run: |
-          PREV_TAG=$(git describe --abbrev=0 HEAD^)
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^)
           echo "previous_version=$PREV_TAG" >> $GITHUB_OUTPUT
 
       # Also creates a matching tag!
