@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6 # latest verified release
+        with:
+          enable-cache: true
+
+      - run: uv python install 3.12
+      - run: uv run pytest
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/ruff-action@v3
+      - run: ruff check --fix
+      - run: ruff format --check --diff
