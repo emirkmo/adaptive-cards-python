@@ -28,8 +28,6 @@ classifiers = [
   "Framework :: Pydantic",
   "Topic :: Software Development :: Libraries",
   "Topic :: Software Development :: Libraries :: Python Modules",
-  "Topic :: Software Development :: Serialization",
-  "Topic :: Text Processing :: Markup :: JSON",
   "Topic :: File Formats :: JSON :: JSON Schema",
   "Natural Language :: English",
 ]
