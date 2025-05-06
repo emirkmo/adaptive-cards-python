@@ -237,7 +237,6 @@ class AdaptiveCard(ConfiguredBaseModel):
         return self.model_dump_json(exclude_none=True)
 
 
-
 class Refresh(ConfiguredBaseModel):
     """
     Defines how a card can be refreshed by making a request to the target Bot.
