@@ -228,6 +228,15 @@ class AdaptiveCard(ConfiguredBaseModel):
         )
         return self
 
+    def to_dict(self) -> dict[str, Any]:
+        """Dump correctly using model_dump(exclude_none=True)"""
+        return self.model_dump(exclude_none=True)
+
+    def to_json(self) -> str:
+        """Dump correctly using model_dump_json(exclude_none=True)"""
+        return self.model_dump_json(exclude_none=True)
+
+
 
 class Refresh(ConfiguredBaseModel):
     """
