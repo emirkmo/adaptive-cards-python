@@ -1,0 +1,96 @@
+name: Build (uv)
+
+on:
+  push:
+    branches: [main]
+    tags-ignore:
+      - "v*"
+
+permissions:
+  contents: write   # needed by github‑script to create the tag & release
+  id-token: write   # required for trusted‑publishing
+  actions: write    # upload/download‑artifact
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6   # latest verified release
+        with:
+          enable-cache: true
+
+      - name: Set up Python 3.12
+        run: uv python install 3.12
+
+      - name: Build distribution
+        run: uv build                 # produces dist/*
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ matrix.os }}
+          path: dist/*
+          retention-days: 30           # keep only the latest set
+          if-no-files-found: error
+
+  release_publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: "main"
+          fetch-tags: true
+      - name: Download all dist artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: dist-*                  # pull every OS artifact from build job
+          merge-multiple: true             # place everything *into* ./dist
+          path: dist
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: get version
+        id: version
+        run: |
+          VERSION=$(uv run python -c "from importlib.metadata import version; print(version('adaptive_cards_python'));")
+          echo "version=v{$VERSION}" >> $GITHUB_OUTPUT
+
+      - name: get previous tag
+        id: previous_version
+        run: |
+          PREV_TAG=$(git describe --abbrev=0 HEAD^)
+          echo "previous_version=$PREV_TAG" >> $GITHUB_OUTPUT
+
+      # Also creates a matching tag
+      - name: Create GitHub Release
+        env:
+          tag: ${{ steps.version.outputs.version }}
+          previous_tag: ${{ steps.previous_version.outputs.previous_version }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global --add safe.directory $PWD
+          gh release create --generate-notes --notes-start-tag ${{ env.previous_tag }} ${{ env.tag }} dist/*
+
+      - name: Smoke test (wheel)
+        run: uv run --isolated --no-project -p 3.12 --with dist/*.whl tests/smoke_test.py
+
+      - name: Smoke test (source distribution)
+        run: uv run --isolated --no-project -p 3.12 --with dist/*.tar.gz tests/smoke_test.py
+
+      - name: publish package
+        run: uv publish --trusted-publishing always
