@@ -30,6 +30,8 @@ vcs = "git"
 #style = "pep440"
 bump = true
 style = "semver"
+latest-tag=true
+
 
 [[tool.uv.index]]
 name = "axis"
