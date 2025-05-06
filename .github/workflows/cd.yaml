@@ -52,6 +52,7 @@ jobs:
         with:
          sparse-checkout: |
           tests/test_version.py
+          uv.lock
          sparse-checkout-cone-mode: false
 
       - name: Install uv
