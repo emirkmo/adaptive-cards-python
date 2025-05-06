@@ -33,6 +33,14 @@ classifiers = [
   "Topic :: File Formats :: JSON :: JSON Schema",
   "Natural Language :: English",
 ]
+keywords = [
+  "adaptive-cards",
+  "microsoft-teams",
+  "pydantic",
+  "jsonschema",
+  "datamodel-code-gen",
+  "webhook",
+]
 
 [project.urls]
 Homepage = "https://github.com/emirkmo/adaptive-cards-python.git"
