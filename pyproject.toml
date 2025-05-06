@@ -27,10 +27,8 @@ source = "uv-dynamic-versioning"
 [tool.uv-dynamic-versioning]
 fallback-version = "0.1.0"
 vcs = "git"
-#style = "pep440"
+style = "pep440"
 bump = true
-style = "semver"
-latest-tag=true
 
 
 [[tool.uv.index]]
