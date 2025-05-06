@@ -34,6 +34,12 @@ classifiers = [
   "Natural Language :: English",
 ]
 
+[project.urls]
+Homepage = "https://github.com/emirkmo/adaptive-cards-python.git"
+Repository = "https://github.com/emirkmo/adaptive-cards-python.git"
+Issues = "https://github.com/emirkmo/adaptive-cards-python/issues"
+Changelog = "https://github.com/emirkmo/adaptive-cards-python/releases"
+
 [build-system]
 requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
