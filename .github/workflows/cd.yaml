@@ -1,4 +1,4 @@
-name: Build (uv)
+name: cd
 
 on:
   push:
