@@ -9,8 +9,8 @@ dependencies = [
     "pydantic-extra-types>=2.10.4",
     "pydantic>=2.11.4",
     "orjson>=3.10.18",
-    "jsonschema>=4.23.0",
-    "requests>=2.32.3",
+    "jsonschema>=4.0.0",
+    "requests>=2.0.0",
 ]
 license = "MIT"
 # PEP301 trove classifiers
