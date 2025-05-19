@@ -120,7 +120,7 @@ def test_construct_card():
     AdaptiveCard(type="AdaptiveCard", version="1.5", body=body, actions=actions_list)
 
 
-def construct_from_dict():
+def test_construct_from_dict():
     AdaptiveCard.model_validate(
         {
             "type": "AdaptiveCard",
