@@ -50,4 +50,4 @@ class CaseInsensitiveLiteralClass(Generic[T]):
         annotated: type[T] = Annotated[literal_type, case_insensitive_literal_validator(values)]
         return cast(type[T], annotated)
 
-CaseInsensitiveLiteral: type = CaseInsensitiveLiteralClass
+CaseInsensitiveLiteral = CaseInsensitiveLiteralClass
