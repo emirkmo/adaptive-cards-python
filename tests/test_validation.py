@@ -27,7 +27,7 @@ invalid_card = {
     "version": "1.5",
     "body": [],
 }
-WEBHOOK_URL = "<MY_MSTEAMS_WORKFLOW_WEBHOOK_URL>"
+WEBHOOK_URL = "<REDACTED_WEBHOOK_URL>"
 
 
 def test_valid_card():
@@ -113,7 +113,7 @@ def test_construct_card():
     actions_list.append(
         actions.OpenUrl(
             title="View Contract",
-            url="https://github.com/axteams-one/ddm-contracts/blob/main/contracts/idd/acap_list.yaml",
+            url="https://example.com/contract.yaml",
         )
     )
 
@@ -169,10 +169,10 @@ def test_construct_from_json_string():
             },
             "body": [
                 {"type": "TextBlock", "text": "Migrations Ready"},
-                {"type": "TextBlock", "text": "Submitted by **ADACO**"},
+                {"type": "TextBlock", "text": "Submitted by **REDACTED**"},
                 {
                     "type": "TextBlock",
-                    "text": "Approval pending from **DDM**"
+                    "text": "Approval pending from **REDACTED**"
                 }
             ],
             "actions": [
