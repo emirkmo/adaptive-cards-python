@@ -2,8 +2,8 @@ from __future__ import annotations
 from pydantic import BaseModel, ValidationError, TypeAdapter
 from pydantic.functional_validators import PlainValidator
 from typing import Literal, Union
-from adaptive_cards_python.case_insensitive_literal import CaseInsensitiveLiteral, case_insensitive_literal_validator
 import pytest
+from adaptive_cards_python.case_insensitive_literal import CaseInsensitiveLiteral, case_insensitive_literal_validator
 
 SomeConfig = Literal["Some", "Config"]
 
@@ -116,7 +116,6 @@ def test_case_insensitive_literal_validator():
     assert inner_validator("bar") == "bar"
     assert inner_validator("bAr") == "bar"
     # Invalid value raises ValueError
-    import pytest
     with pytest.raises(ValueError):
         inner_validator("baz")
     with pytest.raises(TypeError):

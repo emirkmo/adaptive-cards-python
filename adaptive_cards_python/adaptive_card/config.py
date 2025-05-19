@@ -20,4 +20,4 @@ ImageStyle = CaseInsensitiveLiteral[Literal["default", "person"]]
 TextBlockStyle = CaseInsensitiveLiteral[Literal["default", "heading"]]
 VerticalAlignment = CaseInsensitiveLiteral[Literal["top", "center", "bottom"]]
 VerticalContentAlignment = CaseInsensitiveLiteral[Literal["top", "center", "bottom"]]
-Colors = CaseInsensitiveLiteral[Literal["default", "dark", "light", "accent", "good", "warning", "attention"]] | str
+Colors = (CaseInsensitiveLiteral[Literal["default", "dark", "light", "accent", "good", "warning", "attention"]]) | str
