@@ -3,6 +3,7 @@ from __future__ import annotations  # Required to defer type hint evaluation!
 from typing import Annotated, Any, Literal
 from pathlib import Path
 from pydantic import Field, ConfigDict
+from adaptive_cards_python.case_insensitive_literal import CaseInsensitiveLiteral
 
 from .Extendable import Item, ConfiguredBaseModel
 from .config import FallbackOption
@@ -10,9 +11,9 @@ from .config import FallbackOption
 import orjson
 
 
-ActionMode = Literal["primary", "secondary"]
+ActionMode = CaseInsensitiveLiteral[Literal["primary", "secondary"]]
 
-ActionStyle = Literal["default", "positive", "destructive"]
+ActionStyle = CaseInsensitiveLiteral[Literal["default", "positive", "destructive"]]
 
 
 class ActionBase(Item):
@@ -73,7 +74,7 @@ class ActionBase(Item):
     )
 
 
-AssociatedInputs = Literal["Auto", "None"]
+AssociatedInputs = CaseInsensitiveLiteral[Literal["Auto", "None"]]
 
 
 def get_json_schema_file() -> Path:
