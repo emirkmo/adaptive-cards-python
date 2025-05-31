@@ -1,6 +1,6 @@
 from __future__ import annotations  # Required to defer type hint evaluation!
 
-from typing import Any, Self, Literal
+from typing import Any, Literal, Self
 from pathlib import Path
 import json
 
