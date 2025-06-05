@@ -10,7 +10,6 @@ class ConfiguredBaseModel(BaseModel):
         alias_generator=to_camel,
         populate_by_name=True,
         str_strip_whitespace=True,
-        str_to_lower=True,
     )
 
 
