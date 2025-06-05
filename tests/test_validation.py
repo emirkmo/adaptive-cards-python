@@ -27,7 +27,7 @@ invalid_card = {
     "version": "1.5",
     "body": [],
 }
-WEBHOOK_URL = "<REDACTED_WEBHOOK_URL>"
+WEBHOOK_URL = "<MY_MSTEAMS_WORKFLOW_WEBHOOK_URL>"
 
 
 def test_valid_card():
@@ -113,14 +113,14 @@ def test_construct_card():
     actions_list.append(
         actions.OpenUrl(
             title="View Contract",
-            url="https://example.com/contract.yaml",
+            url="https://github.com/axteams-one/ddm-contracts/blob/main/contracts/idd/acap_list.yaml",
         )
     )
 
     AdaptiveCard(type="AdaptiveCard", version="1.5", body=body, actions=actions_list)
 
 
-def test_construct_from_dict():
+def contruct_from_dict():
     AdaptiveCard.model_validate(
         {
             "type": "AdaptiveCard",
@@ -169,10 +169,10 @@ def test_construct_from_json_string():
             },
             "body": [
                 {"type": "TextBlock", "text": "Migrations Ready"},
-                {"type": "TextBlock", "text": "Submitted by **REDACTED**"},
+                {"type": "TextBlock", "text": "Submitted by **ADACO**"},
                 {
                     "type": "TextBlock",
-                    "text": "Approval pending from **REDACTED**"
+                    "text": "Approval pending from **DDM**"
                 }
             ],
             "actions": [
